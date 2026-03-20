@@ -11,8 +11,7 @@ import {
 } from 'react-icons/fi';
 
 const navigation = [
-  { name: '~/', href: '/', label: 'Home' },
-  { name: '$ whoami', href: '/whoami', label: 'About' },
+  { name: '$ whoami', href: '/', label: 'Home' },
   { name: '~/code', href: '/projects', label: 'Projects' },
   { name: '$ connect', href: '/contact', label: 'Contact' },
 ];
@@ -31,7 +30,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -40,23 +38,22 @@ export default function Header() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/70 backdrop-blur-md py-3 shadow-sm' 
-          : 'bg-white/30 backdrop-blur-sm py-5'
+          ? 'bg-white/80 backdrop-blur-md py-3 shadow-sm' 
+          : 'bg-white/40 backdrop-blur-sm py-5'
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo - Left with Avatar Placeholder */}
+          {/* Logo - Empty Circle */}
           <Link 
             href="/" 
             className="flex items-center space-x-2 group"
           >
-            {/* Empty Avatar - just a circle */}
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-200 to-gray-300 border border-gray-300"></div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 border border-gray-300"></div>
           </Link>
 
-          {/* Desktop Navigation - Center with Dev Terms */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center space-x-8">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
@@ -72,7 +69,6 @@ export default function Header() {
                   title={item.label}
                 >
                   {item.name}
-                  {/* Light gray underline */}
                   <span 
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gray-300 transition-all duration-300 ${
                       isActive ? 'w-full' : 'w-0 group-hover:w-full'
@@ -83,16 +79,16 @@ export default function Header() {
             })}
           </div>
 
-          {/* Right - GitHub Repo Link with Icon and Arrow */}
+          {/* Right - GitHub Link */}
           <div className="hidden md:flex items-center">
             <Link
-              href="https://github.com/khalidahmedkhan/portfolio"
+              href="https://github.com/khalidahmedkhan"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200 group"
             >
               <FiGithub className="w-4 h-4" />
-              <span className="font-mono">repo</span>
+              <span className="font-mono">code</span>
               <FiArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
@@ -120,7 +116,6 @@ export default function Header() {
           }`}
         >
           <div className="container mx-auto px-4 py-6 space-y-4">
-            {/* Mobile Navigation Links with Dev Terms */}
             <div className="space-y-2">
               {navigation.map((item) => {
                 const isActive = pathname === item.href;
@@ -141,20 +136,16 @@ export default function Header() {
               })}
             </div>
 
-            {/* Mobile GitHub Repo Link */}
             <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-3 px-4">
-                Code
-              </p>
               <div className="px-4">
                 <Link
-                  href="https://github.com/khalidahmedkhan/portfolio"
+                  href="https://github.com/khalidahmedkhan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-500 hover:text-gray-900 transition-colors duration-200 group"
                 >
                   <FiGithub className="w-5 h-5" />
-                  <span className="text-sm font-mono">repository</span>
+                  <span className="text-sm font-mono">code</span>
                   <FiArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Link>
               </div>
